@@ -1,0 +1,25 @@
+<div class="container" social-icons align='left'>
+
+<form action="{% url 'defence:like_post' %}"  method="post">
+{% csrf_token %}
+{% if is_liked %}
+
+<button type="submit"  name="post_id" value="{{post.id}}" class="btn btn-danger  " >
+  <i class="pin" class="far fa-thumbs-down fa-2x" ></i></button>
+{% else %}
+<button type="submit"  name="post_id" value="{{post.id}}" class="btn btn-primary " ><i class="far fa-thumbs-up fa-2x"></i></button>
+{% endif %}
+</form>
+<h3>  {{total_likes}} Like{{total_likes|pluralize}}</h3>
+</div>
+{% comment %} {% if post.user == request.user %}
+<div class="section-1" style="float-left;">
+  <a href="{%url 'update_post' id=post_obj.id %}" >
+    <button type="button" class="btn btn-outline-delete btn-success" name="button">Edit</button>
+  </a>
+  <a href="{%url 'post_delete' id=post_obj.id %}" id="delete">
+    <button type="button" class="btn btn-outline-delete btn-danger " name="button">Delete</button>
+  </a>
+</div>
+
+{%endif%} {% endcomment %}

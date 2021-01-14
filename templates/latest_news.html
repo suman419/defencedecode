@@ -1,0 +1,134 @@
+
+<!DOCTYPE HTML>
+{% extends 'base.html'%}
+
+{% load static%}
+
+    <!-- Main Content -->
+{% block container_block %}
+
+	<!--start-main-->
+	<div class="header-bottom">
+		<div class="container">
+			<div class="logo wow fadeInDown"  data-wow-duration=".8s" data-wow-delay=".2s">
+				<h1><a href="index.html">Latest News</a></h1>
+				<p><label class="of"></label>LET'S MAKE A PERFECT STYLE<label class="on"></label></p>
+			</div>
+		</div>
+	</div>
+<!-- banner -->
+
+<div class="banner">
+<div class="container">	
+		<h2>Contrary to popular belief, Lorem Ipsum simply</h2>
+		<!-- <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+		<a href="singlepage.html">READ MORE</a> -->
+	</div>
+</div>
+
+	<!-- technology-left -->
+	<div class="technology">
+	<div class="container">
+    
+		<div class="col-md-9 technology-left">
+        {% for latest_post in latest_post%}
+		<div class="tech-no">
+			<!-- technology-top -->
+			
+			  <div class="tc-ch wow fadeInDown"  data-wow-duration=".8s" data-wow-delay=".2s">
+				
+					<div class="tch-img">
+                    <a href="{% url 'defence:post_detail'  pk=latest_post.id %}">
+                    <img class="card-img-top" src={{ latest_post.image.url }} class="img-responsive" alt="" width="750px" height="420px">
+						</a>
+					</div>
+					
+					<h3><a href="{% url 'defence:post_detail'  pk=latest_post.id %}">{{latest_post.title}}</a></h3>
+					<h6>BY <a href="singlepage.html">{{latest_post.user|upper}} </a>{{latest_post.created}} views:{{latest_post.post_views}}</h6>
+						<p>{{latest_post.body|truncatewords_html:100}}</p>
+						
+						<div class="bht1">
+							<a href="{% url 'defence:post_detail'  pk=latest_post.id %}">Continue Reading</a>
+						</div>
+						<div class="soci">
+							<ul>
+								<li class="hvr-rectangle-out"><a class="fb" href="#"></a></li>
+								<li class="hvr-rectangle-out"><a class="twit" href="#"></a></li>
+								<li class="hvr-rectangle-out"><a class="goog" href="#"></a></li>
+								{% comment %} <li class="hvr-rectangle-out"><a class="pin" href="#"></a></li>
+								<li class="hvr-rectangle-out"><a class="drib" href="#"></a></li> {% endcomment %}
+							</ul>
+						</div>
+						<div class="clearfix"></div>
+                        
+			</div> 
+            
+			<div class="clearfix"></div>
+			
+			</div>
+            {% endfor %}
+		</div>
+        
+		<!-- technology-right -->
+		<div class="col-md-3 technology-right">
+				
+				<div class="blo-top1">
+							
+					<div class="tech-btm">
+					<div class="search-1 wow fadeInDown"  data-wow-duration=".8s" data-wow-delay=".2s">
+							<form action="#" method="post">
+								<input type="search" name="Search" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}" required="">
+								<input type="submit" value=" ">
+							</form>
+						</div>
+					<h4>Popular Posts </h4>
+                    {% for item in popular_post%}
+						<div class="blog-grids wow fadeInDown"  data-wow-duration=".8s" data-wow-delay=".2s">
+							<div class="blog-grid-left">
+                            
+								<a href="singlepage.html"><img src={{ item.image.url }} class="img-responsive" alt="" width="90px" height="56px"></a>
+							</div>
+							<div class="blog-grid-right">
+								
+								<h5><a href="{% url 'defence:post_detail'  pk=item.id %}">{{item.title|truncatechars:20}}</a> views: {{item.post_views}} </h5>
+							</div>
+							<div class="clearfix"> </div>
+						</div>
+                        {% endfor %}
+						
+                        <h4>Trending News </h4>
+                    {% for item in trends%}
+						<div class="blog-grids wow fadeInDown"  data-wow-duration=".8s" data-wow-delay=".2s">
+							<div class="blog-grid-left">
+                            
+								<a href="singlepage.html"><img src={{ item.image.url }} class="img-responsive" alt="" width="90px" height="56px"></a>
+							</div>
+							<div class="blog-grid-right">
+								
+								<h5><a href="{% url 'defence:post_detail'  pk=item.id %}">{{item.title|truncatechars:25}}</a> </h5>
+                                Trending at : {{forloop.counter}} 
+							</div>
+							<div class="clearfix"> </div>
+						</div>
+                        {% endfor %}      
+						<div class="insta wow fadeInDown"  data-wow-duration=".8s" data-wow-delay=".2s">
+					
+					</div>
+						<div class="insta wow fadeInDown"  data-wow-duration=".8s" data-wow-delay=".2s">
+					
+					</div>
+					
+					
+					</div>
+					
+				</div>
+				
+		</div>
+		<div class="clearfix"></div>
+        
+		<!-- technology-right -->
+	</div>
+</div>
+{%include 'pagination.html' with page=latest_post %} 
+
+{% endblock %}

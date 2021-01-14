@@ -1,0 +1,105 @@
+<!DOCTYPE HTML>
+
+{% extends 'base.html'%}
+{% load embed_video_tags %}
+{% load static%}
+
+{% block container_block %}
+
+<html>
+<head>
+<style>
+.center {
+  text-align: center;
+  color: red;
+}
+</style>
+</head>
+<body>
+<br>
+<h1 class="center">Broadcast Video</h1>
+<br> 
+
+<!-- technology-left -->
+
+	<div class="technology">
+	<div class="container">
+   
+		<div class="col-md-9 technology-left">
+        {% for item in my_video %}
+		<div class="tech-no">
+			<!-- technology-top -->
+			
+			  <div class="tc-ch wow fadeInDown"  data-wow-duration=".8s" data-wow-delay=".2s">
+				
+					<div class="tch-img">
+                    {% video item.video '750x420' %}
+                    {% comment %} <img class="card-img-top" src={{ post_obj.image.url }} class="img-responsive" alt="" width="750px" height="420px"> {% endcomment %}
+						
+					</div>
+					
+					<h3>{{item.post.title}}</h3>
+					<h6>Published BY :{{item.post.user|upper}}{{post_obj.user|upper}} {{item.post.created}}</h6>
+						<p>{{item.post.body}}</p>
+						
+						
+						<div class="soci">
+							<ul>
+								<li class="hvr-rectangle-out"><a class="fb" href="#"></a></li>
+								<li class="hvr-rectangle-out"><a class="twit" href="#"></a></li>
+								<li class="hvr-rectangle-out"><a class="goog" href="#"></a></li>
+								{% comment %} <li class="hvr-rectangle-out"><a class="pin" href="#"></a></li>
+								<li class="hvr-rectangle-out"><a class="drib" href="#"></a></li> {% endcomment %}
+							</ul>
+						</div>
+						<div class="clearfix"></div>
+			</div> 
+			<div class="clearfix"></div>
+			
+			</div>
+            {% endfor %}
+		</div>
+        
+		<!-- technology-right -->
+		<div class="col-md-3 technology-right">
+				
+				<div class="blo-top1">
+							
+					<div class="tech-btm">
+					<div class="search-1 wow fadeInDown"  data-wow-duration=".8s" data-wow-delay=".2s">
+							<form action="#" method="post">
+								<input type="search" name="Search" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}" required="">
+								<input type="submit" value=" ">
+							</form>
+						</div>
+					<h4>Popular Posts </h4>
+                    {% for item in popular_post%}
+						<div class="blog-grids wow fadeInDown"  data-wow-duration=".8s" data-wow-delay=".2s">
+							<div class="blog-grid-left">
+                            
+								<a href="singlepage.html"><img src={{ item.image.url }} class="img-responsive" alt="" width="100px" height="76px"></a>
+							</div>
+							<div class="blog-grid-right">
+								
+								<h5><a href="{% url 'defence:post_detail'  pk=item.id %}">{{item.title|truncatechars:25}}</a> 
+                                <br> views: {{item.post_views}} </h5>
+							</div>
+							<div class="clearfix"> </div>
+						</div>
+                        {% endfor %}
+						
+						<div class="insta wow fadeInDown"  data-wow-duration=".8s" data-wow-delay=".2s">
+					
+					</div>
+					</div>
+					
+				</div>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+</div>
+
+</body>
+</html>
+{% endblock %}
+

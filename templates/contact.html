@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+{% extends 'base.html'%}
+
+{% load static%}
+
+{% block container_block %}
+
+<html>
+<head>
+<style>
+.center {
+  text-align: center;
+  color: red;
+}
+</style>
+</head>
+<body>
+<br>
+<h1 class="center">Contact with Us</h1>
+<br> 
+
+
+
+
+<div class="name">
+	<form  action="contact_us" method ="post"   enctype="multipart/form-data">
+	{% csrf_token %}  
+	<input type="text" name=" yourname" placeholder="Your Name" required="">
+	<input type="text" name="youremail"  placeholder="Your Email" required="">
+    <input type="text" name="yourphone"  placeholder="Your Phone" required="">
+    <input type="text" name="youraddress"  placeholder="Your Address" required="">
+    <input type="text" name="details"  placeholder="Enter Details" required="">
+	<input type="submit" value="Submit Now">
+	</form>				
+</div>	
+
+
+</body>
+</html>
+{% endblock %}
+
