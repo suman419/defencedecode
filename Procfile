@@ -1,0 +1,1 @@
+web: gunicorn defence_project.wsgi --log-file
