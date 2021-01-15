@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import cloudinary_storage
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -45,6 +46,8 @@ INSTALLED_APPS = [
     'defence',
     'taggit',
     'embed_video',
+	'cloudinary_storage',
+    'cloudinary',
 
 
     'allauth',
@@ -169,3 +172,10 @@ SITE_ID = 1
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 LOGIN_URL= 'accounts/login'
 
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dlnry2puo',
+    'API_KEY': '377923176254974',
+    'API_SECRET': 'grG_AJtljzS9S3q5SW9tlzCLycE'
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
